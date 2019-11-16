@@ -1,4 +1,7 @@
 .jumbotron {
     background-image: url("../assets/test_photo.jpg");
     background-size: cover;
+    /* height: 100%;
+    width: 100%; */
+    min-height: 900px;
    }
