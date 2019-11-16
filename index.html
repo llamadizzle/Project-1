@@ -8,8 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    </head>
         <link rel="stylesheet" href="css/test.css">    
-        <script src="https://code.jquery.com/jquery.js"></script>
-
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     </head>
         <body>
                 <div class="jumbotron jumbotron-fluid" id = "jumbotron">
@@ -19,16 +18,35 @@
                         </div>
                       </div>
 
-
                       <form>
                             <div class="form-group">
                               <label for="exampleInputRecipe">What do you want to cook tonight?</label>
-                              <input type="text" class="form-control" i>
+                              <input type="text" id = "get-recipe" class="form-control" i>
                               <small id="recipleHelp" class="form-text text-muted">Get Creative with it!</small>
                             </div>
 
-                            <button type="submit" class=".submit">Submit</button>
+                            <button type="submit" class="submitRecipe">Submit</button>
                           </form>
+
+                          <div id = "recipe-results"></div>
+
+
+                          <form>
+                                <div class="form-group">
+                                  <label for="exampleInputJoke">Click here for an ice-breaker joke!</label>
+                                  <small id="jokeHelp" class="form-text text-muted">Nothing keeps conversation smoother than sharing a laugh</small>
+                                </div>
+
+    
+                                <button type="submit" class="submitJoke">Submit</button>
+                              </form>
+
+                              <div class="card" style="width: 18rem;">
+                                    <img src="assets/laughing.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <p class="card-text" id = "funnyJoke"></p>
+                                    </div>
+                                  </div>
         <script src = "javascript/project-1.js"></script>
     </body>
 </html>
