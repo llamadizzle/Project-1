@@ -1,7 +1,9 @@
 .jumbotron {
-    background-image: url("../assets/test_photo.jpg");
+    background-image: url("../assets/steph.jpg");
     background-size: cover;
     /* height: 100%;
     width: 100%; */
     min-height: 900px;
+    color: white;
+    text-align: right;
    }
