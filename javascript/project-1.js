@@ -28,4 +28,34 @@ function displayRecipe(){
     })
 }
 
-displayRecipe();
+//displayRecipe();
+
+function funnyFacts(){
+
+    //var queryURL = " https://joke3.p.rapidapi.com/v1/joke"
+
+    // $.ajax({
+    //     url:queryURL,
+    //     method: "GET"
+    // }).then(function(response){
+    //     console.log(response)
+    // });
+    // var unirest = require("unirest");
+
+    var settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://joke3.p.rapidapi.com/v1/joke",
+        method: "GET",
+        headers: {
+            "x-rapidapi-host": "joke3.p.rapidapi.com",
+            "x-rapidapi-key": "75ed2bc80amsh952e0bb4ee2170dp105942jsn797a7158557b"
+        }
+    }
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response.content);
+    });
+}
+
+funnyFacts();
