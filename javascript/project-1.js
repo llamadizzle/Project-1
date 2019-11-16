@@ -54,8 +54,13 @@ function funnyFacts(){
     }
     
     $.ajax(settings).done(function (response) {
-        console.log(response.content);
+        var funnyJoke = response.content;
+        var pTag = $("<p>")
+        pTag.addClass("joke").append(funnyJoke);
+        $("#funnyJoke").append(pTag);
     });
 }
 
 funnyFacts();
+
+ 
