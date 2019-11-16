@@ -1,0 +1,4 @@
+.jumbotron {
+    background-image: url("../assets/test_photo.jpg");
+    background-size: cover;
+   }
