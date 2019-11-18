@@ -19,37 +19,57 @@
         </div>
       </div>
 
-      <!-- user input: ingredient to use with recipe puppy api  -->
-      <form>
-        <div class="form-group">
-          <label for="exampleInputRecipe">What do you want to cook tonight?</label>
-          <input type="text" id = "get-recipe" class="form-control" i>
-          <small id="recipleHelp" class="form-text text-muted">Get Creative with it!</small>
+      <!-- bootstrap container start -->
+      <div class="container">
+        <!-- user input: ingredient to use with recipe puppy api  -->
+        <form>
+          <div class="form-group">
+            <label for="exampleInputRecipe">What do you want to cook tonight?</label>
+            <input type="text" id = "get-recipe" class="form-control" i>
+            <small id="recipleHelp" class="form-text text-muted">Get Creative with it!</small>
+          </div>
+
+          <button type="submit" class="submitRecipe">Submit</button>
+        </form>
+
+        <!-- recipe results from api call go here -->
+        <div id = "recipe-results"></div>
+
+        <!-- conversation starter section: click button(s) to get facts/jokes -->
+        <form>
+          <div class="form-group">
+            <label for="exampleInputJoke">Click here for an ice-breaker joke!</label>
+            <small id="jokeHelp" class="form-text text-muted">Nothing keeps conversation smoother than sharing a laugh</small>
+          </div>
+
+          <button type="submit" class="submitJoke">Submit</button>
+        </form>
+
+        <div class="card" style="width: 18rem;">
+          <img src="assets/laughing.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text" id = "funnyJoke"></p>
+          </div>
         </div>
 
-        <button type="submit" class="submitRecipe">Submit</button>
-      </form>
-
-      <!-- recipe results from api call go here -->
-      <div id = "recipe-results"></div>
-
-      <!-- conversation starter section: click button(s) to get facts/jokes -->
-      <form>
-        <div class="form-group">
-          <label for="exampleInputJoke">Click here for an ice-breaker joke!</label>
-          <small id="jokeHelp" class="form-text text-muted">Nothing keeps conversation smoother than sharing a laugh</small>
+        <!-- conversation starter -->
+        <div class="card trivia">
+          <div class="card-body">
+            <h4 class="card-title">Need a Conversation starter?</h4>
+            <h6 class="card-subtitle mb-2 text-muted">What's better than a bit of trivia?  Click on a topic below to get started.</h6>
+            <div class="card-text triviaResult"></div>
+            <button type="button" class="btn btn-primary triviabutton" category="9">General Knowledge</button>
+            <button type="button" class="btn btn-primary triviabutton" category="17">Science & Nature</button>
+            <button type="button" class="btn btn-primary triviabutton" category="11">Film</button>
+            <button type="button" class="btn btn-primary triviabutton" category="12">Music</button>
+            <button type="button" class="btn btn-primary triviabutton" category="21">Sports</button>
+            <button type="button" class="btn btn-primary triviabutton" category="10">Books</button>
+            <button type="button" class="btn btn-primary triviabutton" category="26">Celebrities</button>
+            <button type="button" class="btn btn-primary triviabutton" category="27">Animals</button>
+          </div>
         </div>
-
-        <button type="submit" class="submitJoke">Submit</button>
-      </form>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/laughing.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text" id = "funnyJoke"></p>
-        </div>
-      </div>
-
+      
+    </div>  <!-- bootstrap container end -->
     <script src = "javascript/project-1.js"></script>
   </body>
 </html>
