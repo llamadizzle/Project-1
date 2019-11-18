@@ -64,22 +64,22 @@ function displayRecipe(ingredient){
             */
 
             //create div with class card for recipe results
-            var card = $("<div>")
+            const card = $("<div>")
             card.addClass("card");
         
             //create recipeIMG tag with class rImg & hotlinked to recipeURL
-            var rImg = $("<img>");
+            const rImg = $("<img>");
             rImg.attr("src", recipeIMG).addClass(rImg);
 
             //create <a> tag for img
-            var link = $("<a>");
+            const link = $("<a>");
             link.attr("href", recipeURL).attr("target", "_blank");
 
             //appends img to <a> tag
-            var pic = link.append(rImg);
+            const pic = link.append(rImg);
 
             //create <p> for recipeName with class title
-            var rTitle = $("<p>");
+            const rTitle = $("<p>");
             rTitle.addClass("title").text(recipeName);
 
             //append img & p tags to DOM
@@ -115,8 +115,43 @@ function funnyFacts(){
     });
 }
 
+function displayTrivia(triviaCategory){
+    //empty div
+    $(".card-text").empty();
+
+    //api url
+    var triviaURL = "https://opentdb.com/api.php?amount=1&type=multiple&category="+triviaCategory;
+
+    $.ajax({
+        url: triviaURL,
+        method: "GET",
+    }).then(function(response){
+        //array containing trivia data
+        var questArr = response.results;
+
+        for (let index = 0; index < questArr.length; index++) {         var question = questArr[index].question;
+            //console.log(question);
+            var answer = questArr[index].correct_answer;
+            //console.log(answer);
+
+            //create <p> tag for question & add class question
+            var q = $("<p>")
+            q.addClass("question").append(question);
+            
+            //create <p> tag for answer & add class answer text-muted
+            var a = $("<p>");
+            a.addClass("answer text-muted").append(answer);
+
+            //write question & answer to DOM
+            $(".card-text").append(q).append(a);
+            
+        }
+    });
+}
+
 // MAIN PROCESS
 //=======================
+//when submit button for recipe clicked...do this
 $(document).on("click", ".submitRecipe", function(){
     // Preventing the button from trying to submit the form
     event.preventDefault();
@@ -128,6 +163,20 @@ $(document).on("click", ".submitRecipe", function(){
     displayRecipe(ingredient);
     
 });
+
+//when trivia button clicked....do this
+$(document).on("click", ".triviabutton", function(){
+    //prevent click event
+    event.preventDefault();
+
+    //get category from button clicked
+    var triviaCategory = $(this).attr("category");
+    console.log(triviaCategory);
+
+    //call displayTrivia function, passing category attribute
+    displayTrivia(triviaCategory);
+});
+
 
 //calls funnyFacts function
 funnyFacts();
