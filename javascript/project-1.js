@@ -28,7 +28,7 @@ function displayRecipe(ingredient){
    var settings = {
         async: true,
         crossDomain: true,
-        url: "https://floating-plateau-18745.herokuapp.com/https://api.edamam.com/search?q="+ingredient+"&app_id="+appID+"&app_key="+appKEY+"&from=0&to=5",
+        url: "https://floating-plateau-18745.herokuapp.com/https://api.edamam.com/search?q="+ingredient+"&app_id="+appID+"&app_key="+appKEY+"&from=0&to=6",
         method: "GET",
     }
 
@@ -51,7 +51,7 @@ function displayRecipe(ingredient){
         //console.log(arrofRecipes.length)
         //console.log(typeof(arrofRecipes));
 
-        for (let index = 0; index < 5; index++) {
+        for (let index = 0; index < arrofRecipes.length; index++) {
             const recipe = arrofRecipes[index].recipe;
             const recipeName = recipe.label;
             const recipeURL = recipe.url;
@@ -64,22 +64,22 @@ function displayRecipe(ingredient){
             */
 
             //create div with class card for recipe results
-            const card = $("<div>")
-            card.addClass("card");
+           let card = $("<div>")
+            card.addClass("card recipe");
         
             //create recipeIMG tag with class rImg & hotlinked to recipeURL
-            const rImg = $("<img>");
+           let rImg = $("<img>");
             rImg.attr("src", recipeIMG).addClass(rImg);
 
             //create <a> tag for img
-            const link = $("<a>");
+           let link = $("<a>");
             link.attr("href", recipeURL).attr("target", "_blank");
 
             //appends img to <a> tag
-            const pic = link.append(rImg);
+           let pic = link.append(rImg);
 
             //create <p> for recipeName with class title
-            const rTitle = $("<p>");
+           let rTitle = $("<p>");
             rTitle.addClass("title").text(recipeName);
 
             //append img & p tags to DOM
