@@ -20,3 +20,27 @@
 .form-control-lg{
     width: 400px;
 }
+
+#recipe-results {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.recipe {
+    width: 30%;
+    margin: 10px;
+    display: flex;
+}
+
+.recipe img {
+    width: 225px;
+    align-items: center;
+    /* margin: 10px auto; */
+
+}
+
+.title {
+    text-align: center;
+
+
+}
