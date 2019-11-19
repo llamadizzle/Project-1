@@ -153,6 +153,9 @@ function displayTrivia(triviaCategory){
 //=======================
 //when submit button for recipe clicked...do this
 $(document).on("click", ".submitRecipe", function(){
+     //clear div
+     $("#recipe-results").empty();
+
     // Preventing the button from trying to submit the form
     event.preventDefault();
 
