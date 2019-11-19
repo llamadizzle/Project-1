@@ -21,6 +21,10 @@
     width: 400px;
 }
 
+.footer{
+  background-color: gray;
+}
+
 #recipe-results {
     display: flex;
     flex-flow: row wrap;
@@ -41,6 +45,4 @@
 
 .title {
     text-align: center;
-
-
 }
