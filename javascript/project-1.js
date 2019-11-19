@@ -105,6 +105,7 @@ function funnyFacts(){
     $.ajax(settings).done(function (response) {
         //variable to hold response from joke api
         var funnyJoke = response.content;
+       
 
         //create <p> tag & append joke content
         var pTag = $("<p>")
@@ -112,6 +113,7 @@ function funnyFacts(){
 
         //write joke to DOM
         $("#funnyJoke").append(pTag);
+        console.log("joke api response", response)
     });
 }
 
@@ -149,15 +151,55 @@ function displayTrivia(triviaCategory){
     });
 }
 
+async function sweetAlert() {
+// swal.fire({
+//     title: "Are you sure, you don't want a joke??",
+//     type: "warning",
+//     showCancelButton: true,
+//     confirmButtonClass: "btn-primary",
+//     confirmButtonText: "Give me a joke pls!",
+//     cancelButtonText: "No thanks, give me food",
+//     closeOnConfirm: false,
+//     closeOnCancel: false
+//   },
+//   function(isConfirm) {
+//     if (isConfirm) {
+//       swal.fire("Perfect!", "Here's your joke");
+//     } else {
+//       swal.fire("No problems", "Here's your food)");
+//     }
+//   });
+const { value: conversation } = await Swal.fire({
+    title: 'Do you want a opener?',
+    input: 'select',
+    inputOptions: {
+    generalKnowledge: 'General Knowledge',
+    scienceNature: 'Science & Nature',
+    film: 'Film',
+    music: 'Music',
+    book: 'Books',
+    celebrities: 'Celebrities',
+    animals: 'Animals'
+    },
+    inputPlaceholder: 'Select a conversation',
+    showCancelButton: true,
+  })
+  
+  if (recipe) {
+    Swal.fire(`You selected: ${recipe}`)
+  }
+};
 // MAIN PROCESS
 //=======================
 //when submit button for recipe clicked...do this
 $(document).on("click", ".submitRecipe", function(){
-     //clear div
+    //clear div
+    event.preventDefault();
+     console.log('here');
      $("#recipe-results").empty();
+     sweetAlert();
 
     // Preventing the button from trying to submit the form
-    event.preventDefault();
 
     //gets ingredient from user input
     ingredient = $("#get-recipe").val().trim();
@@ -183,4 +225,5 @@ $(document).on("click", ".triviabutton", function(){
 
 //calls funnyFacts function
 funnyFacts();
+
  
