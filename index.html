@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    </head>
       <link rel="stylesheet" href="css/test.css">    
       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <link rel="shortcut icon" type="image/png" href="assets/fav-icon.png"/>
   </head>
     <body>
       <!-- site header -->
@@ -16,13 +17,25 @@
         <div class="container">
           <h1 class="display-4">Cooking Date Night</h1>
           <p class="lead">Your go to spot for cooking date night ideas!</p>
+
+          <div id = "recipeSearch">
+          <form class="form-inline">
+            <label class="sr-only" for="exampleInputRecipe">Name</label>
+            <input type="text" class="form-control form-control-lg" id="get-recipe" placeholder="Yummy Food">
+    
+            <button type="submit" class="submitRecipe btn btn-primary ml-4 btn-lg">Submit</button>
+          </form>
+        </div>
         </div>
       </div>
+
+ 
+
 
       <!-- bootstrap container start -->
       <div class="container">
         <!-- user input: ingredient to use with recipe puppy api  -->
-        <form>
+        <!-- <form>
           <div class="form-group">
             <label for="exampleInputRecipe">What do you want to cook tonight?</label>
             <input type="text" id = "get-recipe" class="form-control" i>
@@ -30,7 +43,7 @@
           </div>
 
           <button type="submit" class="submitRecipe">Submit</button>
-        </form>
+        </form> -->
 
         <!-- recipe results from api call go here -->
         <div id = "recipe-results"></div>
