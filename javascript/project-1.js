@@ -169,61 +169,83 @@ async function sweetAlert() {
 //       swal.fire("No problems", "Here's your food)");
 //     }
 //   });
-const { value: conversation } = await Swal.fire({
-    title: 'Do you want a opener?',
-    input: 'select',
-    inputOptions: {
-    generalKnowledge: 'General Knowledge',
-    scienceNature: 'Science & Nature',
-    film: 'Film',
-    music: 'Music',
-    book: 'Books',
-    celebrities: 'Celebrities',
-    animals: 'Animals'
-    },
-    inputPlaceholder: 'Select a conversation',
-    showCancelButton: true,
-  })
-  
-  if (recipe) {
-    Swal.fire(`You selected: ${recipe}`)
-  }
+
+    const { value: text } = await Swal.fire({
+        title: 'What is your dates name?',
+        input: 'text',
+        inputPlaceholder: 'Enter your dates name'
+    })
+    
+    if (text) {
+        Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
+    }
+    // const { value: conversation } = await Swal.fire({
+    //     title: 'Do you want a opener?',
+    //     input: 'select',
+    //     inputOptions: {
+    //         generalKnowledge: 'General Knowledge',
+    //         scienceNature: 'Science & Nature',
+    //         film: 'Film',
+    //         music: 'Music',
+    //         book: 'Books',
+    //         celebrities: 'Celebrities',
+    //         animals: 'Animals'
+    //     },
+    //     timer: 3000,
+    //     inputPlaceholder: 'Select a conversation',
+    //     showCancelButton: true,
+    //     closeModal: false,
+    // })
+    
+    //if (recipe) {
+    // Swal.fire(`You selected: ${recipe}`)
+    //}
 };
+
+
 // MAIN PROCESS
 //=======================
 //when submit button for recipe clicked...do this
 $(document).on("click", ".submitRecipe", function(){
     //clear div
-    event.preventDefault();
-     console.log('here');
      $("#recipe-results").empty();
-     sweetAlert();
 
     // Preventing the button from trying to submit the form
+    event.preventDefault();
+    //console.log('here');
 
     //gets ingredient from user input
     ingredient = $("#get-recipe").val().trim();
+    //check if user input recipe searchTerm
+    if (!ingredient){
 
-    //calls displayRecipe function, passing user given ingredient
-    displayRecipe(ingredient);
+    }else{
+        //calls displayRecipe function, passing user given ingredient
+        displayRecipe(ingredient);
+         
+        //display sweetAlert - ask if user wants a convo starter
+        sweetAlert();
+    }
     
 });
 
+
+
 //when trivia button clicked....do this
-$(document).on("click", ".triviabutton", function(){
-    //prevent click event
-    event.preventDefault();
+// $(document).on("click", ".triviabutton", function(){
+//     //prevent click event
+//     event.preventDefault();
 
-    //get category from button clicked
-    var triviaCategory = $(this).attr("category");
-    console.log(triviaCategory);
+//     //get category from button clicked
+//     var triviaCategory = $(this).attr("category");
+//     console.log(triviaCategory);
 
-    //call displayTrivia function, passing category attribute
-    displayTrivia(triviaCategory);
-});
+//     //call displayTrivia function, passing category attribute
+//     displayTrivia(triviaCategory);
+// });
 
 
 //calls funnyFacts function
-funnyFacts();
+//funnyFacts();
 
  
