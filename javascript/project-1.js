@@ -225,7 +225,64 @@ async function sweetAlert() {
     // Swal.fire(`You selected: ${recipe}`)
     //}
 
+};
+async function topicChooser() {
+    const { value: conversation } = await Swal.fire({
+        title: 'Do you want a opener?',
+        input: 'select',
+        inputOptions: {
+            9: 'General Knowledge',
+            17: 'Science & Nature',
+            11: 'Film',
+            12: 'Music',
+            10: 'Books',
+            26: 'Celebrities',
+            27: 'Animals'
+        }, 
+        button: {closeModal: false, text: "search"},
+        inputPlaceholder: 'Select a conversation',
+        showCancelButton: true,
+        inputValidator: (value) => {
+            return new Promise((resolve) => {
+              if (value === '9') {
+    }
+    )
+    
+    .then (topic => {
+        if (!topic) throw null;
+        var tea = topic.value;
 
+        return fetch ("https://opentdb.com/api.php?amount=1&type=multiple&category={tea}");
+    })
+    .then (results => {
+        var questArr = response.results;
+
+        for (let index = 0; index < questArr.length; index++) {         
+        var question = questArr[index].question;
+        console.log(question);
+        var answer = questArr[index].correct_answer;
+        //console.log(answer);
+
+        Swal.fire({
+            title: question,
+            text: answer,
+
+        })
+        }
+    })
+    .catch(err=> {
+        if(err){
+            Swal.fire("Request failed");
+        }
+     else {
+        swal.stopLoading();
+        swal.close();
+    }
+    });
+};
+
+
+ 
 
 // MAIN PROCESS
 //=======================
@@ -252,6 +309,7 @@ $(document).on("click", ".submitRecipe", function(){
     }
     
 });
+topicChooser();
 
 
 

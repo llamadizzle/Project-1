@@ -6,17 +6,19 @@
     min-height: 900px;
     color: white;
     text-align: right;
+    margin-bottom: 0%;
    }
 .triviaResult{
     height:5em;
 }
 #recipeSearch{
-    margin: 275px;
+    margin-top: 275px;
     background-color: rgba(255, 255, 255, .5);
     padding: 10px 0;
     display: flex;
     justify-content: center;
 }
+
 .form-control-lg{
     width: 400px;
 }
@@ -45,4 +47,11 @@
 
 .title {
     text-align: center;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    width: 300px;
 }
