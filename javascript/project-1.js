@@ -150,8 +150,10 @@ function displayTrivia(triviaCategory){
         }
     });
 }
-
+// var myVar = setInterval(myTimer, 1000);
+// function myTimer() {
 async function sweetAlert() {
+    
 // swal.fire({
 //     title: "Are you sure, you don't want a joke??",
 //     type: "warning",
@@ -170,15 +172,37 @@ async function sweetAlert() {
 //     }
 //   });
 
-    const { value: text } = await Swal.fire({
+    setTimeout(function(){ 
+        
+        const { value: text } = Swal.fire({
         title: 'What is your dates name?',
         input: 'text',
-        inputPlaceholder: 'Enter your dates name'
+        inputPlaceholder: 'Enter your dates name',
+        timer: 10000,
+
     })
     
-    if (text) {
+    if (text) { console.log('here');
         Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
     }
+ }, 10000);
+
+};
+
+
+    // const { value: text } = await Swal.fire({
+    //     title: 'What is your dates name?',
+    //     input: 'text',
+    //     inputPlaceholder: 'Enter your dates name',
+    //     timer: 4000,
+
+    // })
+    
+    // if (text) {
+    //     Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
+    // }
+
+// }
     // const { value: conversation } = await Swal.fire({
     //     title: 'Do you want a opener?',
     //     input: 'select',
@@ -200,7 +224,7 @@ async function sweetAlert() {
     //if (recipe) {
     // Swal.fire(`You selected: ${recipe}`)
     //}
-};
+
 
 
 // MAIN PROCESS
