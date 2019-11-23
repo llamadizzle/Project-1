@@ -72,7 +72,7 @@ function displayRecipe(ingredient){
         
             //create recipeIMG tag with class rImg & hotlinked to recipeURL
            let rImg = $("<img>");
-            rImg.attr("src", recipeIMG).addClass(rImg);
+            rImg.attr("src", recipeIMG).addClass("rImg");
 
             //create <a> tag for img
            let link = $("<a>");
@@ -181,14 +181,14 @@ async function sweetAlert() {
         title: 'What is your dates name?',
         input: 'text',
         inputPlaceholder: 'Enter your dates name',
-        timer: 10000,
+       // timer: 10000,
 
         })
     
         if (text) { console.log('here');
             Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
         }
-    }, 10000);
+    }, 1000);
 
 }
 
@@ -247,8 +247,8 @@ async function topicChooser() {
                 Swal.fire({
                 title: question,
                 text: answer,
-                showCancelButton:true,
-                cancelButtonText: "Get new Opener",
+                //showCancelButton:true,
+                //cancelButtonText: "Get new Opener",
                 })
             }
         }else if (
@@ -261,9 +261,6 @@ async function topicChooser() {
     })
 
 }
-
-
- 
 
 // MAIN PROCESS
 //=======================
@@ -284,17 +281,15 @@ $(document).on("click", ".submitRecipe", function(){
     }else{
         //calls displayRecipe function, passing user given ingredient
         displayRecipe(ingredient);
-         
+
         //display sweetAlert - ask if user wants a convo starter
-        sweetAlert();
+        setTimeout(topicChooser, 10000);
+
+          //display sweetAlert - ask your date's name
+        //setTimeout(sweetAlert, 18000);
     }
     
 });
-
-//test sweet alert for convo topic selector modal
-topicChooser();
-
-
 
 //when trivia button clicked....do this
 // $(document).on("click", ".triviabutton", function(){

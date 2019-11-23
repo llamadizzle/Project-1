@@ -36,13 +36,13 @@
     width: 30%;
     margin: 10px;
     display: flex;
+    align-items: center;
 }
 
-.recipe img {
+.rImg {
     width: 225px;
     align-items: center;
-    /* margin: 10px auto; */
-
+    margin: 10px auto;
 }
 
 .title {
