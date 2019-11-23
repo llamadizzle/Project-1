@@ -8,6 +8,9 @@ var arrofRecipes = [];
 var appID = "4b51a474";
 var appKEY ="b747956cf15e65eba2e9a1f80922b6f8";
 
+//trivia variables
+var catNum;
+
 
 // FUNCTIONS
 //=======================
@@ -131,7 +134,8 @@ function displayTrivia(triviaCategory){
         //array containing trivia data
         var questArr = response.results;
 
-        for (let index = 0; index < questArr.length; index++) {         var question = questArr[index].question;
+        for (let index = 0; index < questArr.length; index++) {         
+            var question = questArr[index].question;
             //console.log(question);
             var answer = questArr[index].correct_answer;
             //console.log(answer);
@@ -150,8 +154,7 @@ function displayTrivia(triviaCategory){
         }
     });
 }
-// var myVar = setInterval(myTimer, 1000);
-// function myTimer() {
+
 async function sweetAlert() {
     
 // swal.fire({
@@ -180,55 +183,18 @@ async function sweetAlert() {
         inputPlaceholder: 'Enter your dates name',
         timer: 10000,
 
-    })
+        })
     
-    if (text) { console.log('here');
-        Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
-    }
- }, 10000);
+        if (text) { console.log('here');
+            Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
+        }
+    }, 10000);
 
-};
+}
 
-
-    // const { value: text } = await Swal.fire({
-    //     title: 'What is your dates name?',
-    //     input: 'text',
-    //     inputPlaceholder: 'Enter your dates name',
-    //     timer: 4000,
-
-    // })
-    
-    // if (text) {
-    //     Swal.fire(`Have a great time with ${text} ! Take a look at some conversation starters below the recipes!`)
-    // }
-
-// }
-    // const { value: conversation } = await Swal.fire({
-    //     title: 'Do you want a opener?',
-    //     input: 'select',
-    //     inputOptions: {
-    //         generalKnowledge: 'General Knowledge',
-    //         scienceNature: 'Science & Nature',
-    //         film: 'Film',
-    //         music: 'Music',
-    //         book: 'Books',
-    //         celebrities: 'Celebrities',
-    //         animals: 'Animals'
-    //     },
-    //     timer: 3000,
-    //     inputPlaceholder: 'Select a conversation',
-    //     showCancelButton: true,
-    //     closeModal: false,
-    // })
-    
-    //if (recipe) {
-    // Swal.fire(`You selected: ${recipe}`)
-    //}
-
-};
 async function topicChooser() {
-    const { value: conversation } = await Swal.fire({
-        title: 'Do you want a opener?',
+    const {num: conversation} = await Swal.fire({
+        title: 'Do you want an opener?',
         input: 'select',
         inputOptions: {
             9: 'General Knowledge',
@@ -238,48 +204,63 @@ async function topicChooser() {
             10: 'Books',
             26: 'Celebrities',
             27: 'Animals'
-        }, 
-        button: {closeModal: false, text: "search"},
+        },
         inputPlaceholder: 'Select a conversation',
         showCancelButton: true,
-        inputValidator: (value) => {
+        confirmButtonText: 'Get Opener',
+        showLoaderOnConfirm: true,
+        inputValidator: (num) => {
             return new Promise((resolve) => {
-              if (value === '9') {
-    }
-    )
-    
-    .then (topic => {
-        if (!topic) throw null;
-        var tea = topic.value;
-
-        return fetch ("https://opentdb.com/api.php?amount=1&type=multiple&category={tea}");
+                if (num) {
+                    catNum = num;
+                    resolve()
+                }
+            })
+        },
+        preConfirm: (catNum) => {
+            return fetch('https://opentdb.com/api.php?amount=1&type=multiple&category='+catNum)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error(response.statusText)
+                }
+                //console.log(response);
+                return response.json();
+            })
+            .catch(error => {
+                Swal.showValidationMessage(
+                `Request failed: ${error}`
+                )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.value){
+            var questArr = result.value.results;
+            console.log(questArr);
+            for (let index = 0; index < questArr.length; index++) {
+                var question = questArr[index].question;
+                //console.log(question);
+                var answer = questArr[index].correct_answer;
+                //console.log(answer);
+                
+                //write question & answer to sweet alert
+                Swal.fire({
+                title: question,
+                text: answer,
+                showCancelButton:true,
+                cancelButtonText: "Get new Opener",
+                })
+            }
+        }else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+              //lets you choose a new topic & gets new opener
+          }
+         
     })
-    .then (results => {
-        var questArr = response.results;
 
-        for (let index = 0; index < questArr.length; index++) {         
-        var question = questArr[index].question;
-        console.log(question);
-        var answer = questArr[index].correct_answer;
-        //console.log(answer);
-
-        Swal.fire({
-            title: question,
-            text: answer,
-
-        })
-        }
-    })
-    .catch(err=> {
-        if(err){
-            Swal.fire("Request failed");
-        }
-     else {
-        swal.stopLoading();
-        swal.close();
-    }
-    });
-};
+}
 
 
  
@@ -309,6 +290,8 @@ $(document).on("click", ".submitRecipe", function(){
     }
     
 });
+
+//test sweet alert for convo topic selector modal
 topicChooser();
 
 
@@ -329,5 +312,3 @@ topicChooser();
 
 //calls funnyFacts function
 //funnyFacts();
-
- 
